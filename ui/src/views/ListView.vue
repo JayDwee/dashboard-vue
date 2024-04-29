@@ -40,6 +40,5 @@ import ShoppingList from './../components/list/ShoppingList.vue'
 
 .shopping-table {
     background-color: var(--va-bg-top);
-    background
 }
 </style>
