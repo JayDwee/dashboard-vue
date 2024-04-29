@@ -33,17 +33,15 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: vue-dist
-
     - name: Setup AWS CLI
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-2
-
     - name: Deploy Modified Files
       run: |
         ls
         # Constants
         S3_BUCKET=vue-my-recipe
-        aws s3 cp dist/ s3://$S3_BUCKET/ --recursive
+        aws s3 cp . s3://$S3_BUCKET/ --recursive
