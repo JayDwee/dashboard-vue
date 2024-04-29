@@ -22,7 +22,7 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: vue-dist
-        path: ./ui/dist
+        path: dist
 
   upload-s3:
     name: Upload to S3 🪣
