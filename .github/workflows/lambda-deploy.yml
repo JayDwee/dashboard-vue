@@ -1,0 +1,31 @@
+# Not Tested, just for reference
+name: Go Package & Labmda Deploy 📦🪣
+on: workflow_dispatch
+
+jobs:
+  deploy-labmda:
+    name: Labmda Deploy 🪣
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.x
+      - name: Deploy
+        run: |
+          aws lambda update-function-code \
+            --function-name go-lambda-test \
+            --zip-file fileb://main.zip
+      - name: Run
+        run: |
+          aws lambda invoke \
+            --function-name go-lambda-test \
+            --payload '{"message": "Hello World!"}' \
+            --log-type Tail \
+            output.txt
+          cat output.txt
+          rm output.txt
+      - name: Clean up
+        run: rm main.zip
