@@ -43,4 +43,4 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-2
     - name: Deploy Modified Files
-      run: aws s3 sync . s3://vue-my-recipe.jackdraper.co.uk/ --recursive --delete
+      run: aws s3 sync . s3://vue-my-recipe.jackdraper.co.uk/ --delete
