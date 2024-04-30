@@ -1,5 +1,8 @@
 name: Vue.js Package & S3 Upload 📦🪣
-on: push
+on: 
+  push:
+    tags:
+      - '**'
 
 jobs:
   build:
@@ -40,8 +43,4 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-2
     - name: Deploy Modified Files
-      run: |
-        ls
-        # Constants
-        S3_BUCKET=vue-my-recipe
-        aws s3 cp . s3://$S3_BUCKET/ --recursive
+      run: aws s3 sync . s3://vue-my-recipe.jackdraper.co.uk/ --recursive --delete
