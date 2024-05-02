@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import ShoppingList from './../components/list/ShoppingList.vue'
 </script>
 
 <template>
@@ -13,13 +14,22 @@ import { ref } from 'vue'
                     <VaCard>
                         <VaCardTitle>Quick Actions</VaCardTitle>
                         <VaCardActions align="center">
-                            <VaButton icon="add" size="large" round>Recipe</VaButton>
-                            <VaButton icon="add" size="large" round>Fridge</VaButton>
-                            <VaButton icon="visibility" size="large" round>Meals</VaButton>
+                            <VaButton icon="add" size="large">Recipe</VaButton>
+                            <VaButton icon="add" size="large">Fridge</VaButton>
+                            <VaButton icon="visibility" size="large">Meals</VaButton>
                         </VaCardActions>
                     </VaCard>
-                    <VaCard class="sh-list">
+                    <VaCard>
                         <VaCardTitle>Shopping List</VaCardTitle>
+                        <VaCardContent>
+  <VaScrollContainer
+    class="max-h-52"
+    vertical
+  >
+        <ShoppingList></ShoppingList>
+  </VaScrollContainer>
+
+                        </VaCardContent>
                     </VaCard>
                     <VaCard>
                         <VaCardTitle>Nutrition</VaCardTitle>
@@ -44,12 +54,10 @@ import { ref } from 'vue'
     background: linear-gradient(180deg, var(--va-bg-top), var(--va-bg-bottom));
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     justify-content: stretch; 
     color: #000000;
-    padding-top: 2rem;
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding: 2rem;
 }
 
 
@@ -60,15 +68,15 @@ import { ref } from 'vue'
 .steps-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
     gap: 1.5rem;
-    min-width: 40rem;
+    min-width: 0;
+    max-width: 800px;
+    min-height: 40rem;
 }
 
-.sh-list {
-    grid-area: 1 / 2 / 3 / 3;
+
+.max-h-52{
+    max-width: 50px;
 }
 
 @media (max-width: 768px) {

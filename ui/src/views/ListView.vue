@@ -1,20 +1,28 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ShoppingList from './../components/list/ShoppingList.vue'
+
+const addToList = () => {
+  ShoppingList[0].quantity++;
+}
+
 </script>
 
 <template>
 
     <div class="app">
-
-
         <main>
-            <h5 class="app-title">
-                Shopping List
-            </h5>
-            <div class="shopping-table">
-                <ShoppingList></ShoppingList>
-            </div>
+            <VaCard>
+                <VaCardTitle>
+                    Shopping List
+                </VaCardTitle>
+                <VaCardContent>
+                    <ShoppingList></ShoppingList>
+                </VaCardContent>
+                <VaCardActions align="right">
+                            <VaButton icon="add" size="small" @click="addToList">Add</VaButton>
+                </VaCardActions>
+            </VaCard>
         </main>
     </div>
 </template>
@@ -26,19 +34,21 @@ import ShoppingList from './../components/list/ShoppingList.vue'
     background: linear-gradient(180deg, var(--va-bg-top), var(--va-bg-bottom));
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    justify-content: stretch;
     color: #000000;
     padding: 2rem;
 }
 
-.app-title {
-    font-size: 2rem;
-    margin: 1.75rem;
-    text-align: center;
+.va-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    max-width: 800px;
 }
 
-.shopping-table {
-    background-color: var(--va-bg-top);
+.va-card__content {
+    flex-grow: 1;
 }
+
 </style>
